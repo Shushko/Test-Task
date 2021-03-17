@@ -5,7 +5,7 @@
       "title": "Audi",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 100,
-      "inCart": false
+      "inCart": true
     },
     {
       "title": "Iphone 5s",
@@ -19,14 +19,14 @@
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 200,
-      "inCart": true
+      "inCart": false
     },
     {
       "id": "adv62bxeq9i",
       "title": "Lexus",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 250,
-      "inCart": true
+      "inCart": false
     },
     {
       "id": "yp5hqdyqh9b",
@@ -118,34 +118,13 @@
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 900,
       "inCart": false
-    },
-    {
-      "title": "test1",
-      "price": "2000",
-      "description": "asrgwrg\n",
-      "inCart": false,
-      "id": "lxwcMJm"
-    },
-    {
-      "title": "test2",
-      "price": "3000",
-      "description": "safuihwiryfoweqfwqefwqefqwefqwef\nqwefqwefqwefqwef\nqwefqwefwef     wqefqwefqwefqwef wefqwefqwefqwef",
-      "inCart": false,
-      "id": "br5Xrqo"
     }
   ],
   "cart": [
     {
-      "id": "ox98i1f5idg",
-      "title": "Citroen",
-      "price": 200,
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
-      "quantity": 1
-    },
-    {
-      "id": "adv62bxeq9i",
-      "title": "Lexus",
-      "price": 250,
+      "id": "bix27468fjc",
+      "title": "Audi",
+      "price": 100,
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "quantity": 1
     }
