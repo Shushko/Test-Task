@@ -1,0 +1,25 @@
+.cart_container {
+    padding-top: 60px;
+}
+
+.cart_container h1 {
+    font-size: 2.5em;
+    margin-left: 20px;
+}
+
+.cart_product_wrap {
+    width: 60%;
+    min-width: 650px;
+    margin: 20px 0 0 20px;
+    padding: 10px;
+}
+
+.cart_product_wrap:last-child {
+    margin-bottom: 20px;
+}
+
+.total_price {
+    padding: 50px 0 50px 20px;
+    font-size: 2em;
+    font-weight: bold;
+}

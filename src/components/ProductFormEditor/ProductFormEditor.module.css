@@ -1,0 +1,52 @@
+.create_view_container {
+    padding-top: 60px;
+}
+
+.create_view_container h1 {
+    margin: 2% 4%;
+}
+
+.create_form {
+    margin: 2% 4%;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.create_form label {
+   margin-top: 10px;
+}
+
+.create_form input {
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 100%;
+    padding: 5px;
+}
+
+.create_form textarea {
+    resize: none;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.create_form button {
+    margin-top: 20px;
+    border: none;
+    border-radius: 3px;
+    background: #209706;
+    padding: 4px 0;
+    font-size: 0.9em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.8;
+    transition: all 0.1s;
+}
+
+.create_form button:hover {
+    opacity: 1;
+}
+

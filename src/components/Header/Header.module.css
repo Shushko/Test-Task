@@ -1,0 +1,60 @@
+.header_container {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    background-color: #353B5F;
+    z-index: 100;
+}
+
+.header_buttons {
+    height: 50px;
+    width: 220px;
+    margin-right: 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button_home {
+    color: #fff;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+.button_home:hover {
+    text-decoration: underline;
+}
+
+.button_create {
+    border: none;
+    border-radius: 5px;
+    background: #0CB94B;
+    padding: 5px 13px;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.1s;
+}
+
+.button_create:hover {
+    background: #0E9B05;
+}
+
+.button_cart {
+    border: none;
+    border-radius: 5px;
+    background: #D57628;
+    padding: 5px 13px;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.1s;
+}
+
+.button_cart:hover {
+    background: #C04D06;
+}

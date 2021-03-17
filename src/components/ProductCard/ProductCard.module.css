@@ -1,0 +1,177 @@
+.product_card {
+    box-sizing: border-box;
+    margin: 1%;
+    height: 450px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: all 0.1s;
+}
+
+.product_card:hover {
+    transform: scale(1.005);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 255, .1)
+}
+
+.product_card_in_cart {
+    box-sizing: border-box;
+    height: 450px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.product_card_image {
+    border-radius: 5px 5px 0 0;
+    width: 300px;
+    height: 300px;
+}
+
+.product_card_info {
+    box-sizing: border-box;
+    margin: 0 5%;
+    border-top: 1px solid #D3D3D3;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.price {
+    float: right;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.description {
+    height: 50px;
+    display: block;
+    margin-top: 10px;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product_card_buttons {
+    box-sizing: border-box;
+    margin: 0 5%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.counter_block {
+    display: flex;
+    box-sizing: border-box;
+    height: 25px;
+    width: 120px;
+    border: 1px solid #C04D06;
+    border-radius: 5px;
+}
+
+.counter_block button {
+    border-radius: 5px;
+    border: none;
+    width: 40px;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
+.counter_block button:hover {
+    color: #C04D06;
+}
+
+.counter_block button:first-child {
+    border-right: 1px solid grey;
+    border-radius: 5px 0 0 5px
+}
+
+.counter_block button:last-child {
+    border-left: 1px solid grey;
+    border-radius: 0 5px 5px 0
+}
+
+.counter_block input {
+    text-align: center;
+    border: none;
+    box-sizing: border-box;
+    width: 40px;
+    outline: none;
+}
+
+.counter_block input::-webkit-outer-spin-button,
+.counter_block input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.counter_block input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.button_edit {
+    border: none;
+    border-radius: 5px;
+    background: #07123F;
+    padding: 3px 8px;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.8;
+    transition: all 0.1s;
+}
+
+.button_edit:hover {
+    opacity: 1;
+    background: #2140C0;
+}
+
+.button_delete {
+    border: none;
+    border-radius: 5px;
+    background: #591B03;
+    padding: 3px 8px;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.8;
+    transition: all 0.1s;
+}
+
+.button_delete:hover {
+    opacity: 1;
+    background: #C04D06;
+}
+
+.button_add_to_cart {
+    border: none;
+    border-radius: 5px;
+    background: #154B02;
+    padding: 3px 8px;
+    font-size: 1em;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    opacity: 0.8;
+    transition: all 0.1s;
+}
+
+.button_add_to_cart:hover {
+    opacity: 1;
+    background: #39B209;
+}
+
+.disabled_button {
+    border: none;
+    border-radius: 5px;
+    background: #474748;
+    padding: 3px 8px;
+    font-size: 1em;
+    color: #fff;
+    outline: none;
+    opacity: 0.5;
+}
