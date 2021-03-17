@@ -53,9 +53,9 @@ const ProductCard = ({ setEditableProduct, product }) => {
                 </button>
                 { state.cartViewIsVisible ?
                 <div className={ classes.counter_block }>
-                    <button onClick={ () => onClickCounterButton(-1) }>-1</button>
+                    <button onClick={ () => onClickCounterButton(-1) }>-</button>
                     <input type="number" onChange={ onChangeCounterInput } value={ counterInput } />
-                    <button onClick={ () => onClickCounterButton(+1) }>+1</button>
+                    <button onClick={ () => onClickCounterButton(+1) }>+</button>
                 </div>
                     :
                 <>

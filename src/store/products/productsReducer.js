@@ -14,19 +14,13 @@ export const initialState = {
 
 
 const getStateWithoutProductInList = (state, productId) => {
-    let copyProducts = [ ...state.products ];
-    copyProducts = copyProducts.filter(product => product.id !== productId);
-    let copyCartProducts = [ ...state.cartProducts ];
-    let productInCart = copyCartProducts.length && copyCartProducts.find(item => item.id === productId);
-    if (productInCart) {
-        copyCartProducts = copyCartProducts.filter(product => product.id !== productId);
-    }
+    let copyProducts = [ ...state.products ].filter(product => product.id !== productId);
+    const copyCartProducts = state.cartProducts.length ? [ ...state.cartProducts ].filter(product => product.id !== productId) : [];
     return { ...state, products: copyProducts, cartProducts: copyCartProducts, totalProductsCount: state.totalProductsCount - 1 }
 };
 
 const getStateWithoutProductInCart = (state, productId) => {
-    let copyCartProducts = [ ...state.cartProducts ];
-    copyCartProducts = copyCartProducts.filter(product => product.id !== productId);
+    let copyCartProducts = [ ...state.cartProducts ].filter(product => product.id !== productId);
     let copyProducts = [ ...state.products ];
     let product = copyProducts.find(item => item.id === productId);
     if (product) { product.inCart = false }
@@ -73,7 +67,7 @@ export const productsReducer = (state, action) => {
             return getStateWithProductInCart(state, action.payload);
 
         case 'SET_PRODUCT_QUANTITY_IN_CART':
-            return getStateWithChangedQuantity(state, action.productId, action.value);
+            return getStateWithChangedQuantity(state, action.payload.productId, action.payload.value);
 
         case 'TOGGLE_NUMBER_OF_ACTIVE_PAGE':
             return {

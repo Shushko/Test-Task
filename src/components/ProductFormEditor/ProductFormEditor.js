@@ -12,14 +12,31 @@ const ProductFormEditor = ({ editableProduct }) => {
 
     const onClickSubmit = async (event) => {
         event.preventDefault();
-        const newProduct = {
-            title: titleInputValue.trim(),
-            price: priceInputValue,
-            description: descriptionInputValue.trim(),
-            inCart: false
-        };
-        const productId = editableProduct ? editableProduct.id : '';
-        await addNewChanges(dispatch, newProduct, !!editableProduct, productId)
+        const title = titleInputValue.trim();
+        const price = priceInputValue;
+        const description = descriptionInputValue.trim();
+
+        if (title && price && description) {
+            const newProduct = { title, price, description, inCart: false };
+            const productId = editableProduct ? editableProduct.id : '';
+            await addNewChanges(dispatch, newProduct, !!editableProduct, productId)
+        }
+    };
+
+    const onChangeTitleInput = (event) => {
+        const value = event.currentTarget.value;
+        const regExp = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        if (!regExp.test(value) || value === '') {
+            setTitleInputValue(value)
+        }
+    };
+
+    const onChangePriceInput = (event) => {
+        const value = event.currentTarget.value;
+        const numberRegExp = new RegExp("^[0-9]+$");
+        if (numberRegExp.test(value.trim()) || value === '') {
+            setPriceInputValue(value)
+        }
     };
 
     return (
@@ -29,21 +46,21 @@ const ProductFormEditor = ({ editableProduct }) => {
                 <label htmlFor="title">Title</label>
                 <input
                     type="text" id="title"
-                    onChange={ e => setTitleInputValue(e.currentTarget.value) }
+                    onChange={ onChangeTitleInput }
                     value={ titleInputValue }
-                    placeholder="Type your title..."
+                    placeholder="Only characters and numbers"
                 />
                 <label htmlFor="price">Price</label>
                 <input
-                    type="number" id="price"
-                    onChange={ e => setPriceInputValue(e.currentTarget.value) }
+                    type="text" id="price"
+                    onChange={ onChangePriceInput }
                     value={ priceInputValue }
-                    placeholder="Type your price..."
+                    placeholder="Only numbers"
                 />
                 <label htmlFor="description">Description</label>
                 <textarea
                     cols="30" rows="10" id="description"
-                    onChange={ e => setDescriptionInputValue(e.currentTarget.value) }
+                    onChange={ (e) => setDescriptionInputValue(e.currentTarget.value) }
                     value={ descriptionInputValue }
                     placeholder="Type your description..."
                 />

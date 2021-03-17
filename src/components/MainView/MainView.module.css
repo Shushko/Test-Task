@@ -3,12 +3,12 @@
 }
 
 .sort_buttons_group {
-    margin-left: 4%;
+    margin-left: 40px;
     font-weight: bold;
 }
 
-.sort_buttons_group .sort_button {
-    margin-left: 1%;
+.sort_button {
+    margin: 1%;
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
@@ -20,11 +20,12 @@
     transition: all 0.1s;
 }
 
-.sort_buttons_group .sort_button:hover {
+.sort_button:hover {
     background: #0C50B9;
 }
 
 .page_numbers_section {
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;

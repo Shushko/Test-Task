@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { ContextApp } from '../../store/products/productsReducer';
 import classes from './MainView.module.css';
 import ProductCard from "../ProductCard/ProductCard";
@@ -7,7 +7,9 @@ import { setProducts, setSortedProducts, toggleNumberOfActivePageAC } from "../.
 
 const MainView = ({ setEditableProduct }) => {
     const { state, dispatch } = useContext(ContextApp);
+    const pageTop = useRef();
     const LIMIT_PRODUCTS_FOR_PAGE = 10;
+    const sortByAsc = true;
 
     useEffect(async () => {
         await setProducts(dispatch, 1);
@@ -20,7 +22,7 @@ const MainView = ({ setEditableProduct }) => {
     };
 
     const getProductsList = () => {
-        const partOfProducts = state.products.length > 10 ? getPartOfProducts() : state.products;
+        const partOfProducts = state.products.length > LIMIT_PRODUCTS_FOR_PAGE ? getPartOfProducts() : state.products;
         return partOfProducts.map(product => <ProductCard setEditableProduct={ setEditableProduct }
                                                           product={ product }
                                                           key={ product.id } />)
@@ -29,39 +31,45 @@ const MainView = ({ setEditableProduct }) => {
     const onClickPageNumber = (pageNumber) => {
         if (pageNumber !== state.activePage) {
             dispatch(toggleNumberOfActivePageAC(pageNumber));
-            state.products.length < 11 && setProducts(dispatch, pageNumber)
+            pageTop.current.scrollIntoView({ behavior: 'smooth' });
+            state.products.length <= LIMIT_PRODUCTS_FOR_PAGE && setProducts(dispatch, pageNumber)
         }
     };
 
     const getPageCounter = () => {
-        const sumOfPages = state.totalProductsCount > 1 ? Math.ceil(state.totalProductsCount / LIMIT_PRODUCTS_FOR_PAGE) : 1;
-        let counter = [];
-        for (let i = 1; i <= sumOfPages; i++) {
-            counter = [...counter, <CounterItem item={ i } activePage={ state.activePage } onClickPageNumber={ onClickPageNumber } key={ i } />];
+        const sumOfPages = state.totalProductsCount > 0 ? Math.ceil(state.totalProductsCount / LIMIT_PRODUCTS_FOR_PAGE) : null;
+        if (sumOfPages) {
+            const counter = [];
+            for (let i = 1; i <= sumOfPages; i++) {
+                counter.push(<CounterItem item={ i } activePage={ state.activePage } onClickPageNumber={ onClickPageNumber } key={ i } />);
+            }
+            return counter
+        } else {
+            return sumOfPages
         }
-        return counter
+
     };
 
     return (
-        <main className={ classes.main_view_container }>
+        <main className={ classes.main_view_container } ref={ pageTop }>
             <div className={ classes.sort_buttons_group }>
                 <span>Sort by:</span>
                 <button
-                    className={ classes.sort_button } onClick={ () => setSortedProducts(dispatch, 'less') }
+                    className={ classes.sort_button } onClick={ () => setSortedProducts(dispatch, !sortByAsc) }
                 >
-                    descending price
+                    desc price
                 </button>
                 <button
-                    className={ classes.sort_button } onClick={ () => setSortedProducts(dispatch, 'higher') }
+                    className={ classes.sort_button } onClick={ () => setSortedProducts(dispatch, sortByAsc) }
                 >
-                    ascending price
+                    asc price
                 </button>
-            </div>
-            <div className={ classes.page_numbers_section }>
-                { getPageCounter() }
             </div>
             <div className={ classes.products_list }>
                 { getProductsList() }
+            </div>
+            <div className={ classes.page_numbers_section }>
+                { getPageCounter() }
             </div>
         </main>
     );

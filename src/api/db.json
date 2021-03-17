@@ -19,14 +19,14 @@
       "title": "Citroen",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 200,
-      "inCart": false
+      "inCart": true
     },
     {
       "id": "adv62bxeq9i",
       "title": "Lexus",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
       "price": 250,
-      "inCart": false
+      "inCart": true
     },
     {
       "id": "yp5hqdyqh9b",
@@ -129,10 +129,25 @@
     {
       "title": "test2",
       "price": "3000",
-      "description": "safuihwiryfo",
+      "description": "safuihwiryfoweqfwqefwqefqwefqwef\nqwefqwefqwefqwef\nqwefqwefwef     wqefqwefqwefqwef wefqwefqwefqwef",
       "inCart": false,
       "id": "br5Xrqo"
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": "ox98i1f5idg",
+      "title": "Citroen",
+      "price": 200,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "quantity": 1
+    },
+    {
+      "id": "adv62bxeq9i",
+      "title": "Lexus",
+      "price": 250,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, qui?",
+      "quantity": 1
+    }
+  ]
 }

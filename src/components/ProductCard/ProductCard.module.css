@@ -48,8 +48,16 @@
     display: block;
     margin-top: 10px;
     word-break: break-word;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-y: scroll;
+}
+
+.description::-webkit-scrollbar {
+    background-color: #dfe5ec;
+    width: 3px
+}
+
+.description::-webkit-scrollbar-thumb {
+    background-color: #6490b1;
 }
 
 .product_card_buttons {

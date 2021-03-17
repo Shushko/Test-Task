@@ -9,6 +9,8 @@
 }
 
 .header_buttons {
+    position: absolute;
+    right: 0;
     height: 50px;
     width: 220px;
     margin-right: 4%;

@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { ContextApp } from '../../store/products/productsReducer'
 import classes from './Header.module.css'
 import SearchProductInput from "./SearchProductInput/SearchProductInput";
 import { toggleComponentsVisibilityAC } from "../../store/products/productsActions";
 
 const Header = () => {
-    const { dispatch } = useContext(ContextApp);
+    const { state, dispatch } = useContext(ContextApp);
+    const [searchInputIsVisible, setSearchInputIsVisible] = useState(true);
+
+    useEffect(() => {
+        setSearchInputIsVisible(!(state.productFormEditorIsVisible || state.cartViewIsVisible));
+    }, [state.productFormEditorIsVisible, state.cartViewIsVisible]);
 
     return (
         <header className={ classes.header_container }>
-            <SearchProductInput />
+            { searchInputIsVisible && <SearchProductInput /> }
             <div className={ classes.header_buttons }>
                 <span
                     className={ classes.button_home }

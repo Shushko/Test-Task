@@ -1,12 +1,16 @@
 import {
-    changeProductQuantityInCart,
-    getCartProducts,
     getProductsByPageNumber,
     getProductsByTitle,
-    getSortProducts, removeProductFromCart, removeProductFromList,
-    setChangesToProduct,
-    setNewProduct, setProductToCart
-} from "../../api/api";
+    getSortProducts, removeProductFromList,
+    setChangesToProduct, setNewProduct
+} from "../../api/productRequests";
+import {
+    changeProductQuantityInCart,
+    getCartProducts,
+    removeProductFromCart,
+    setProductToCart
+} from "../../api/cartRequests";
+
 
 const SET_PRODUCTS = 'SET_PRODUCTS';
 const DELETE_PRODUCT_FROM_LIST = 'DELETE_PRODUCT_FROM_LIST';
@@ -48,10 +52,9 @@ const setCartProductsAC = (cartProducts) => ({
     payload: cartProducts
 });
 
-const setProductQuantityInCartAC = (productId, value) => ({
+const setProductQuantityInCartAC = (payload) => ({
     type: SET_PRODUCT_QUANTITY_IN_CART,
-    productId,
-    value
+    payload
 });
 
 const toggleHasErrorAC = (value) => ({
@@ -69,19 +72,23 @@ export const toggleComponentsVisibilityAC = (mainViewIsVisible, productFormEdito
 
 const checkForError = result => result instanceof Error;
 
+const handleResult = (result, actionCreator, dispatch, payload) => {
+    checkForError(result) ? dispatch(toggleHasErrorAC(true)) : dispatch(actionCreator(payload))
+};
+
 export const setProducts = async (dispatch, pageNumber) => {
     const result = await getProductsByPageNumber(pageNumber);
-    !checkForError(result) ? dispatch(setProductsAC(result)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, setProductsAC, dispatch, result);
 };
 
 export const setFilteredProducts = async (dispatch, value) => {
     const result = await getProductsByTitle(value);
-    !checkForError(result) ? dispatch(setProductsAC(result)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, setProductsAC, dispatch, result);
 };
 
-export const setSortedProducts = async (dispatch, value) => {
-    const result = await getSortProducts(value);
-    !checkForError(result) ? dispatch(setProductsAC(result)) : dispatch(toggleHasErrorAC(true));
+export const setSortedProducts = async (dispatch, sortByAsc) => {
+    const result = await getSortProducts(sortByAsc);
+    handleResult(result, setProductsAC, dispatch, result);
 };
 
 export const addNewChanges = async (dispatch, newProduct, isEditMode, productId) => {
@@ -97,27 +104,27 @@ export const addNewChanges = async (dispatch, newProduct, isEditMode, productId)
 
 export const deleteProductFromList = async (dispatch, product) => {
     const result = await removeProductFromList(product);
-    !checkForError(result) ? dispatch(deleteProductFromListAC(product.id)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, deleteProductFromListAC, dispatch, product.id);
 };
 
 export const deleteProductFromCart = async (dispatch, productId) => {
     const result = await removeProductFromCart(productId);
-    !checkForError(result) ? dispatch(deleteProductFromCartAC(productId)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, deleteProductFromCartAC, dispatch, productId);
 };
 
 export const addProductToCart = async (dispatch, product) => {
     const { id, title, price, description } = product;
     const cartProduct = { id, title, price, description, quantity: 1 };
     const result = await setProductToCart(cartProduct);
-    !checkForError(result) ? dispatch(addProductToCartAC(product.id)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, addProductToCartAC, dispatch, product.id);
 };
 
 export const setCartProducts = async (dispatch) => {
     const result = await getCartProducts();
-    !checkForError(result) ? dispatch(setCartProductsAC(result)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, setCartProductsAC, dispatch, result);
 };
 
 export const setProductQuantityInCart = async (dispatch, productId, value) => {
     const result = await changeProductQuantityInCart(productId, value);
-    !checkForError(result) ? dispatch(setProductQuantityInCartAC(productId, value)) : dispatch(toggleHasErrorAC(true));
+    handleResult(result, setProductQuantityInCartAC, dispatch, { productId, value });
 };
