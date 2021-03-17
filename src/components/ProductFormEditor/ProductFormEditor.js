@@ -9,6 +9,8 @@ const ProductFormEditor = ({ editableProduct }) => {
     const [titleInputValue, setTitleInputValue] = useState(editableProduct ? editableProduct.title: '');
     const [priceInputValue, setPriceInputValue] = useState(editableProduct ? editableProduct.price: '');
     const [descriptionInputValue, setDescriptionInputValue] = useState(editableProduct ? editableProduct.description: '');
+    const [titleFieldHasError, setTitleFieldHasError] = useState(false);
+    const [priceFieldHasError, setPriceFieldHasError] = useState(false);
 
     const onClickSubmit = async (event) => {
         event.preventDefault();
@@ -27,7 +29,10 @@ const ProductFormEditor = ({ editableProduct }) => {
         const value = event.currentTarget.value;
         const regExp = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
         if (!regExp.test(value) || value === '') {
-            setTitleInputValue(value)
+            setTitleInputValue(value);
+            !!titleFieldHasError && setTitleFieldHasError(false)
+        } else {
+            !titleFieldHasError && setTitleFieldHasError('Only characters and numbers');
         }
     };
 
@@ -35,7 +40,10 @@ const ProductFormEditor = ({ editableProduct }) => {
         const value = event.currentTarget.value;
         const numberRegExp = new RegExp("^[0-9]+$");
         if (numberRegExp.test(value.trim()) || value === '') {
-            setPriceInputValue(value)
+            setPriceInputValue(value);
+            !!priceFieldHasError && setPriceFieldHasError(false)
+        } else {
+            !priceFieldHasError && setPriceFieldHasError('Only numbers');
         }
     };
 
@@ -50,6 +58,7 @@ const ProductFormEditor = ({ editableProduct }) => {
                     value={ titleInputValue }
                     placeholder="Only characters and numbers"
                 />
+                { titleFieldHasError && <span className={ classes.error }>{ titleFieldHasError }</span> }
                 <label htmlFor="price">Price</label>
                 <input
                     type="text" id="price"
@@ -57,6 +66,7 @@ const ProductFormEditor = ({ editableProduct }) => {
                     value={ priceInputValue }
                     placeholder="Only numbers"
                 />
+                { priceFieldHasError && <span className={ classes.error }>{ priceFieldHasError }</span> }
                 <label htmlFor="description">Description</label>
                 <textarea
                     cols="30" rows="10" id="description"

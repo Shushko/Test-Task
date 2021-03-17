@@ -50,3 +50,6 @@
     opacity: 1;
 }
 
+.error {
+    color: red;
+}
